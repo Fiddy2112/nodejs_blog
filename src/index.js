@@ -32,6 +32,11 @@ app.get("/news", function (req, res) {
   res.render("news");
 });
 
+app.get("/search", (req, res) => {
+  res.render("search");
+  console.log(req.query);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 // import express from "express";
