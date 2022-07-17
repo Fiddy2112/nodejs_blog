@@ -1,4 +1,5 @@
 const express = require("express");
+
 const morgan = require("morgan");
 const handlebars = require("express-handlebars");
 const path = require("path");
@@ -10,8 +11,11 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // HTTP logger
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 // Template engine
 app.engine(
@@ -34,7 +38,13 @@ app.get("/news", function (req, res) {
 
 app.get("/search", (req, res) => {
   res.render("search");
-  console.log(req.query);
+  // console.log(req.query); khi su dung query parameter thi phai dung req.query
+});
+
+app.post("/search", (req, res) => {
+  // console.log(req.body); khi su dung form thi dung req.body
+  console.log(req.body);
+  res.send("");
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
