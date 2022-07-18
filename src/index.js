@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const handlebars = require("express-handlebars");
 const path = require("path");
 
+const route = require("./routes");
+
 const { engine } = handlebars;
 
 const app = express();
@@ -27,39 +29,7 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources/views"));
 
-//main
-app.get("/", function (req, res) {
-  res.render("home");
-});
-
-app.get("/news", function (req, res) {
-  res.render("news");
-});
-
-app.get("/search", (req, res) => {
-  res.render("search");
-  // console.log(req.query); khi su dung query parameter thi phai dung req.query
-});
-
-app.post("/search", (req, res) => {
-  // console.log(req.body); khi su dung form thi dung req.body
-  console.log(req.body);
-  res.send("");
-});
+// Routes init
+route(app);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
-// import express from "express";
-// import { engine } from "express-handlebars";
-
-// const app = express();
-
-// app.engine("handlebars", engine());
-// app.set("view engine", "handlebars");
-// app.set("views", "./views");
-
-// app.get("/", (req, res) => {
-//   res.render("home");
-// });
-
-// app.listen(3000);
