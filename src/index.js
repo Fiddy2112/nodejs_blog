@@ -5,6 +5,11 @@ const handlebars = require("express-handlebars");
 const path = require("path");
 
 const route = require("./routes");
+// Import DB
+const db = require("./config/db");
+
+//Connect to db
+db.connect();
 
 const { engine } = handlebars;
 
