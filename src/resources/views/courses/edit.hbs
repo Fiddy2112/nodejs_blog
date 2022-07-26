@@ -1,0 +1,51 @@
+<div class="mt-4">
+  <h3>Cap nhap khoa hoc</h3>
+
+  <form class="mt-4" method="POST" action="/courses/store">
+    <div class="mb-3">
+      <label for="name" class="form-label">Ten Khoa hoc</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        value="{{course.name}}"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Mo ta khoa hoc</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        name="description"
+        value="{{course.description}}"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="videoId" class="form-label">Video IDc</label>
+      <input
+        type="text"
+        class="form-control"
+        id="videoId"
+        name="videoId"
+        value="{{course.videoId}}"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="level" class="form-label">Trinh do khoa hoc</label>
+      <input
+        type="text"
+        class="form-control"
+        id="level"
+        name="level"
+        value="{{course.level}}"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Luu</button>
+  </form>
+</div>

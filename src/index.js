@@ -29,8 +29,21 @@ app.engine(
   "hbs",
   engine({
     extname: ".hbs",
+    helpers: {
+      sum(a, b) {
+        return a + b;
+      },
+    },
   })
 );
+// const hbs = create({
+//   helpers: {
+//     sum(a, b) {
+//       return a + b;
+//     },
+//   },
+// });
+// app.engine("handlebars", hbs.engine);
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
 
