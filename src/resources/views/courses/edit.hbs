@@ -1,7 +1,7 @@
 <div class="mt-4">
   <h3>Cap nhap khoa hoc</h3>
 
-  <form class="mt-4" method="POST" action="/courses/store">
+  <form class="mt-4" method="POST" action="/courses/{{course._id}}?_method=PUT">
     <div class="mb-3">
       <label for="name" class="form-label">Ten Khoa hoc</label>
       <input

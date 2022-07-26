@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const handlebars = require("express-handlebars");
 const path = require("path");
+const methodOverride = require("method-override");
 
 const route = require("./routes");
 // Import DB
@@ -20,6 +21,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Method override
+app.use(methodOverride("_method"));
 
 // HTTP logger
 // app.use(morgan("combined"));
