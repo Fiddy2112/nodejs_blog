@@ -1,6 +1,7 @@
 <div class="mt-4">
   <div class="">
-    <a class="ml-5" href="/me/stored/courses">Danh sach khoa hoc</a>
+    <a class="ml-5 btn btn-primary" href="/me/stored/courses" role="button">Danh
+      sach khoa hoc</a>
     <h3>Khoa hoc da xoa</h3>
   </div>
 
@@ -10,7 +11,7 @@
         <th scope="col">#</th>
         <th scope="col">Ten khoa hoc</th>
         <th scope="col">Trinh do</th>
-        <th scope="col">Thoi gian tao</th>
+        <th scope="col">Thoi gian xoa</th>
         <th scope="col" colspan="2"></th>
 
       </tr>
@@ -21,18 +22,18 @@
           <th scope="row">{{sum @index 1}}</th>
           <td>{{this.name}}</td>
           <td>{{this.level}}</td>
-          <td>{{this.createdAt}}</td>
+          <td>{{this.deletedAt}}</td>
           <td>
             <a
               href=""
-              class="btn btn-link btn-restore"
+              class="btn btn-outline-primary btn-restore"
               data-id="{{this._id}}"
             >Khoi phuc</a>
           </td>
           <td>
             <a
               href=""
-              class="btn btn-link"
+              class="btn btn-outline-primary"
               data-bs-toggle="modal"
               data-bs-target="#delete-course-modal"
               data-id="{{this._id}}"
@@ -42,7 +43,11 @@
       {{else}}
         <tr>
           <td colspan="5" class="text-center">Thung rac trong.</td>
-          <a href="/me/stored/courses">danh sach khoa hoc</a>
+          <a
+            class="btn btn-primary"
+            href="/me/stored/courses"
+            role="button"
+          >danh sach khoa hoc</a>
         </tr>
       {{/each}}
     </tbody>

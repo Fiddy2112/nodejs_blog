@@ -1,7 +1,20 @@
 <div class="mt-4">
-  <div class="">
+  <div class="position-relative">
     <h3>Khoa hoc cua toi</h3>
-    <a href="/me/trash/courses">Thung rac</a>
+    <a
+      href="/me/trash/courses"
+      class="btn btn-primary position-relative"
+      role="button"
+    >
+      Thung rac
+      <span
+        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+      >
+        {{deletedCount}}
+
+      </span>
+    </a>
+
   </div>
 
   <table class="table mt-4">
@@ -23,15 +36,20 @@
           <td>{{this.level}}</td>
           <td>{{this.createdAt}}</td>
           <td>
-            <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sua</a>
+            <a
+              href="/courses/{{this._id}}/edit"
+              class="btn btn-outline-primary"
+              role="button"
+            >Sua</a>
           </td>
           <td>
             <a
               href=""
-              class="btn btn-link"
+              class="btn btn-outline-primary"
               data-bs-toggle="modal"
               data-bs-target="#delete-course-modal"
               data-id="{{this._id}}"
+              role="button"
             >Xoa</a>
           </td>
         </tr>
