@@ -1,4 +1,4 @@
-<div class="mt-4">
+<form class="mt-4" name="container-form" method="POST" action="/courses/handle-form-actions">
   <div class="position-relative" style="text-align: start;">
     <h3>Khoa hoc cua toi</h3>
     <a
@@ -32,13 +32,15 @@
         class="form-select form-select-sm checkbox-select-all-options"
         aria-label="Default select example"
         style="width: 185px; margin: 0px 16px;"
+        name='action'
+        required
       >
-        <option selected>-- Chon hanh dong --</option>
+        <option value="" selected>-- Chon hanh dong --</option>
         <option value="delete">Xoa</option>
 
       </select>
 
-      <button class="btn btn-primary btn-sm disabled" id="btn-submit">Thuc hien</button>
+      <button class="btn btn-primary btn-sm" id="btn-check-all-submit" disabled>Thuc hien</button>
     </div>
   </div>
 
@@ -91,12 +93,12 @@
       {{else}}
         <tr>
           <td colspan="5" class="text-center">Khong co khoa hoc nao</td>
-          <a href="/courses/create">Dang khoa hoc</a>
+          <a class="btn btn-primary mt-4" href="/courses/create" role="button">Dang khoa hoc</a>
         </tr>
       {{/each}}
     </tbody>
   </table>
-</div>
+</form>
 
 {{! Confirm delete courses }}
 <div class="modal" tabindex="-1" id="delete-course-modal">
@@ -136,49 +138,62 @@
   
   var courseId;
   var deleteForm = document.forms['delete-course-form'];
-  const btnCheckAllSubmit = document.getElementById('btn-submit');
-  const btnDeleteCourse = document.getElementById('btn-delete-course'); 
-  const deleteCourseModal = document.getElementById('delete-course-modal');
-  var checkboxes = document.getElementsByName('courseIds[]');
+  var containerForm = document.forms['container-form'];
+  var btnCheckAllSubmit = document.getElementById('btn-check-all-submit');
+  var btnDeleteCourse = document.getElementById('btn-delete-course'); 
+  var deleteCourseModal = document.getElementById('delete-course-modal');
+  var checkboxes = document.getElementsByName('courseIds[]'); 
   var checkBoxAll = document.getElementById('checkbox-all');
 
   // Delete course
   deleteCourseModal.addEventListener('show.bs.modal', event => { 
     const button = event.relatedTarget; 
-  courseId = button.getAttribute('data-id') ; 
+  courseId = button.getAttribute('data-id'); 
   });
 
   btnDeleteCourse.onclick = ()=> { 
     deleteForm.action = '/courses/' + courseId + '?_method=DELETE'; deleteForm.submit(); 
   };
 
-  // Select all changed
+  // Checkbox all changed
   checkBoxAll.onchange= ()=> {
     const isCheckedAll = checkBoxAll.checked;
-    console.log('isCheckedAll',isCheckedAll);
-    console.log('checkboxes',checkboxes);
   checkboxes.forEach(checkbox => {
     checkbox.checked = isCheckedAll;
-    console.log('checkbox',checkbox);
+    renderCheckAllSubmitBtn();
     });
     }
 
   // Course item checkbox changed
   checkboxes.forEach(checkbox => {
     checkbox.onchange = ()=> {
-    const checkItems = checkbox.checked;
-    console.log(checkItems);
-      const isCheckAll = checkboxes.length === checkItems.length ;
+      const isCheckAll = checkboxes.length === document.querySelectorAll('input[name="courseIds[]"]:checked').length ;
       checkBoxAll.checked = isCheckAll;
+      renderCheckAllSubmitBtn();
     };
   });
 
+  //Check all submit button clicked
+
+//  containerForm.onsubmit = (e)=> {
+//    var isSubmittable = !btnCheckAllSubmit.classList.contains('disabled');
+//    console.log(isSubmittable);
+//    if(!isSubmittable) {
+//      e.preventDefault();
+//    }
+//  }
+
 // Re-render check all submit button
   function renderCheckAllSubmitBtn() {
-    const checkItems = checkboxes.checked;
-    const checkedCount = checkItems.length ;
-    console.log('checkCount',checkedCount)
-    //btnCheckAllSubmit.disabled = !isCheckAll;
+    //quantity checked
+    var checkedCount = document.querySelectorAll('input[name="courseIds[]"]:checked').length;
+    console.log(checkedCount)
+    if (checkedCount > 0) {
+      btnCheckAllSubmit.removeAttribute('disabled');
+    } else {
+      btnCheckAllSubmit.setAttribute('disabled','disabled');
+    }
+console.log(btnCheckAllSubmit);
   }
 
 </script>
