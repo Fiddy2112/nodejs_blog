@@ -1,9 +1,9 @@
 <div class="mt-4">
-  <h3>Cap nhap khoa hoc</h3>
+  <h3>Course Updates</h3>
 
   <form class="mt-4" method="POST" action="/courses/{{course._id}}?_method=PUT">
     <div class="mb-3">
-      <label for="name" class="form-label">Ten Khoa hoc</label>
+      <label for="name" class="form-label">Course Name</label>
       <input
         type="text"
         class="form-control"
@@ -14,7 +14,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="description" class="form-label">Mo ta khoa hoc</label>
+      <label for="description" class="form-label">Course Description</label>
       <input
         type="text"
         class="form-control"
@@ -36,7 +36,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="level" class="form-label">Trinh do khoa hoc</label>
+      <label for="level" class="form-label">Course level</label>
       <input
         type="text"
         class="form-control"
@@ -46,6 +46,6 @@
       />
     </div>
 
-    <button type="submit" class="btn btn-primary">Luu</button>
+    <button type="submit" class="btn btn-primary">Save</button>
   </form>
 </div>
